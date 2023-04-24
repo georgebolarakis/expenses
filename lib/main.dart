@@ -58,7 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
         context: ctx,
         builder: (bCtx) {
           return GestureDetector(
+            // when we tap on the card nothing returns
+            onTap: (){},
             child: NewTransaction(_addNewTransaction),
+            //we catch the tap event and we handdle it here 
+            behavior: HitTestBehavior.opaque,
           );
         });
   }

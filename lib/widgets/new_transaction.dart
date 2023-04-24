@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
-  //our function constractor 
+// we have a stateful widget here so when we change fields after adding data to one of them
+// we retain the state and we don't loose the data
+class NewTransaction extends StatefulWidget {
+  //our function constractor
   final Function addTx;
 
+  NewTransaction(this.addTx);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
 // our text controllers
   final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
-  NewTransaction(this.addTx);
+  final amountController = TextEditingController();
 
   void submitData() {
     final enteredTitle = titleController.text;
@@ -17,10 +25,15 @@ class NewTransaction extends StatelessWidget {
       return;
     }
     // we are adding the data that the user added
-    addTx(
+    // we are using widget. because the addTx function is in a different class(we are in the state here)
+    // so we need to bring it here
+    widget.addTx(
       enteredTitle,
       enteredAmount,
     );
+    // we want the input card to disapear after adding an entry
+    // to close the top most screen essentially
+    Navigator.of(context).pop();
   }
 
   @override
