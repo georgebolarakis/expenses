@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatelessWidget {
+  //our function constractor 
   final Function addTx;
 
+// our text controllers
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
@@ -14,6 +16,7 @@ class NewTransaction extends StatelessWidget {
     if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
     }
+    // we are adding the data that the user added
     addTx(
       enteredTitle,
       enteredAmount,
@@ -40,6 +43,7 @@ class NewTransaction extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amountController,
               keyboardType: TextInputType.number,
+              // this way we can submit the data by using the keyboard
               onSubmitted: (_) => submitData(),
               // onChanged: (val) {
               //   amountInput = val;

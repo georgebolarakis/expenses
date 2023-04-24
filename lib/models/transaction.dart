@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+// The required fields to be able to log a transaction
 class Transaction {
   final String id;
   final String title;

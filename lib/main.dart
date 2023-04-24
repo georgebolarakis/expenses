@@ -22,6 +22,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // Our initial list
   final List<Transaction> _userTransactions = [
     Transaction(
       id: 't1',
@@ -37,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
+// we are adding a new transaction it the list of Transaction
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
       title: txTitle,
@@ -49,12 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  // String titleInput;
-  void startAddNewTransaction(BuildContext ctx) {
+  // we are bringing the textfields when selecting the showModalBOttomSheet inbuild method
+  // that is getting revoked here
+  void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
         builder: (bCtx) {
-          return NewTransaction(_addNewTransaction);
+          return GestureDetector(
+            child: NewTransaction(_addNewTransaction),
+          );
         });
   }
 
@@ -66,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () => _startAddNewTransaction(context),
           )
         ],
       ),
@@ -83,14 +88,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 5,
               ),
             ),
+            // we are presenting the list of transactions here
             TransactionList(_userTransactions),
           ],
         ),
       ),
+      // our floatin button at the bottom centered
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () => _startAddNewTransaction(context),
       ),
     );
   }
