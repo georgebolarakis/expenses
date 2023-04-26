@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(),
       home: MyHomePage(),
     );
   }
@@ -59,9 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (bCtx) {
           return GestureDetector(
             // when we tap on the card nothing returns
-            onTap: (){},
+            onTap: () {},
             child: NewTransaction(_addNewTransaction),
-            //we catch the tap event and we handdle it here 
+            //we catch the tap event and we handdle it here
             behavior: HitTestBehavior.opaque,
           );
         });
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Personal Expenses'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
